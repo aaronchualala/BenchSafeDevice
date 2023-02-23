@@ -1,15 +1,8 @@
 from flask import Flask, request
-<<<<<<< HEAD
-from read_gym_admin_values import read_gym_admin_values
-from get_angle_for_flat_bench import get_angle_for_flat_bench
-from get_angle_for_inclined_bench import get_angle_for_inclined_bench
-from ultrasonic import distance
-=======
 from database import read_gym_admin_values
 from endpoint_handlers import get_angle_for_flat_bench
 from endpoint_handlers import get_angle_for_inclined_bench
 from actuators import turn_motor
->>>>>>> 0024bd68ebad4d00c045eefe15e5ff2ebac55dbc
 
 GYM_ADMIN_VALUES = read_gym_admin_values.read_gym_admin_values()
 app = Flask(__name__)
