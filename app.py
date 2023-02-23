@@ -2,6 +2,7 @@ from flask import Flask, request
 from read_gym_admin_values import read_gym_admin_values
 from get_angle_for_flat_bench import get_angle_for_flat_bench
 from get_angle_for_inclined_bench import get_angle_for_inclined_bench
+from ultrasonic import distance
 
 GYM_ADMIN_VALUES = read_gym_admin_values()
 app = Flask(__name__)
