@@ -3,6 +3,7 @@ from database import read_gym_admin_values
 from endpoint_handlers import get_angle_for_flat_bench
 from endpoint_handlers import get_angle_for_inclined_bench
 from actuators import turn_motor
+from ultrasonic import calculate_bench_distance
 
 GYM_ADMIN_VALUES = read_gym_admin_values.read_gym_admin_values()
 app = Flask(__name__)
