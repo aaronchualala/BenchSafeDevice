@@ -35,10 +35,8 @@ def ultrasonic(echo, trigger):
     GPIO.output(pinTrigger, GPIO.LOW)
     
     while GPIO.input(pinEcho)==0:
-        print("GPIO.input(pinEcho)==0")
         pulseStartTime = time.time()
     while GPIO.input(pinEcho)==1:
-        print("GPIO.input(pinEcho)==1")
         pulseEndTime = time.time()
     
     pulseDuration = pulseEndTime - pulseStartTime
