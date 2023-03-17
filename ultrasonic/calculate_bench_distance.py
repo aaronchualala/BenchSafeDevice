@@ -14,6 +14,8 @@ def calculate_bench_distance(echo, trigger):
 def ultrasonic(echo, trigger):
     pinTrigger = trigger
     pinEcho = echo
+    GPIO.setwarnings(False)
+    GPIO.setmode(GPIO.BCM)
     GPIO.setup(pinTrigger, GPIO.OUT)
     GPIO.setup(pinEcho, GPIO.IN)
 
