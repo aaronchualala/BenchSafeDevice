@@ -35,7 +35,7 @@ def endpoint_1():
 
     # storage
     steps_to_revert = DEVICE_STATE_VALUES['steps_from_vertical_in_ccwise_direction']
-    steps_to_new_pos = angle / 0.703125 # angle_change_for_each_step
+    steps_to_new_pos = abs(int(angle / 0.703125)) # angle_change_for_each_step
     DEVICE_STATE_VALUES['steps_from_vertical_in_ccwise_direction'] = steps_to_new_pos
     io_values.write_device_state_values(DEVICE_STATE_VALUES)
     
