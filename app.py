@@ -1,12 +1,12 @@
 from flask import Flask, request
-from database import read_values
+from database import io_values
 from endpoint_handlers import get_angle_for_flat_bench
 from endpoint_handlers import get_angle_for_inclined_bench
 from actuators import turn_motor
 from ultrasonic import calculate_bench_distance
 
-GYM_ADMIN_VALUES = read_values.read_gym_admin_values()
-DEVICE_STATE_VALUES = read_values.read_device_state_values()
+GYM_ADMIN_VALUES = io_values.read_gym_admin_values()
+DEVICE_STATE_VALUES = io_values.read_device_state_values()
 app = Flask(__name__)
 
 
@@ -32,16 +32,21 @@ def endpoint_1():
         nipple_height,
         vertical_distance_from_flat_bench_to_device
     )
+
+    # storage
+    steps_to_revert = DEVICE_STATE_VALUES['steps_from_vertical_in_ccwise_direction']
+    steps_to_new_pos = angle / 0.703125 # angle_change_for_each_step
+    DEVICE_STATE_VALUES['steps_from_vertical_in_ccwise_direction'] = steps_to_new_pos
+    io_values.write_device_state_values(DEVICE_STATE_VALUES)
     
     # actuation
-    angle_delta = angle - DEVICE_STATE_VALUES['current_angle_from_vertical']
-    steps_delta = angle_delta / DEVICE_STATE_VALUES['angle_change_for_each_step']
-    number_of_steps=abs(int(steps_delta))
-    is_ccwise = True if steps_delta < 0 else False
+    turn_motor.turn_motor(steps_to_revert, is_ccwise=False)
+    turn_motor.turn_motor(steps_to_new_pos, is_ccwise=True)
 
-    turn_motor.turn_motor(number_of_steps, is_ccwise)
-    return "number_of_steps: " + str(number_of_steps) + "\n is_ccwise: " + str(is_ccwise)
+    # results
+    screen_output = "number_of_steps: " + str(number_of_steps) + "\n\n " + "is_ccwise: " + str(is_ccwise)
 
+    return screen_output
 
 @app.route('/angle-for-inclined-bench')
 # http://127.0.0.1:5000/angle-for-inclined-bench?nipple_height=1.2
