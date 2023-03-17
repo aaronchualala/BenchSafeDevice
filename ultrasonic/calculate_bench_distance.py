@@ -29,8 +29,10 @@ def calculate_bench_distance(echo=17, trigger=4):
     count = 30
     while count != 0:
         while GPIO.input(pinEcho)==0:
+            print("GPIO.input(pinEcho)==0")
             pulseStartTime = time.time()
         while GPIO.input(pinEcho)==1:
+            print("GPIO.input(pinEcho)==1")
             pulseEndTime = time.time()
         
         pulseDuration = pulseEndTime - pulseStartTime
