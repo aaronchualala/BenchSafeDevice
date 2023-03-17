@@ -31,7 +31,7 @@ def endpoint_1():
     
     # actuation
     turn_motor.turn_motor(angle)
-    return str(1)
+    return str(angle)
 
 
 @app.route('/angle-for-inclined-bench')

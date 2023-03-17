@@ -5,9 +5,7 @@ import time
 ultrasonic = DistanceSensor(echo=17, trigger=4)
 
 def calculate_bench_distance():
-    for i in range(30):
-        print("ultrasonic.distance")
-        print(ultrasonic.distance)
-        print("WOOHOO")
-        time.sleep(1)
-    return 2
+    for i in range(6):
+        print("ultrasonic distance: ", ultrasonic.distance)
+        time.sleep(0.5)
+    return ultrasonic.distance
