@@ -8,4 +8,4 @@ def calculate_bench_distance():
     print(ultrasonic.distance)
     print("WOOHOO")
     time.sleep(1)
-    return
+    return 2
