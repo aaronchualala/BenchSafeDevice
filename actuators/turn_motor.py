@@ -8,6 +8,9 @@ def turn_motor(steps):
     # mymotortest = RpiMotorLib.BYJMotor("MyMotorOne", "28BYJ")
     # mymotortest.motor_run(GpioPins , .01, 100, False, True, "half", .05)
     print('steps', steps)
+    print('steps', int(steps))
+    print('steps', abs(int(steps)))
+
     direction = True if steps > 0 else False
     GpioPins = [18, 23, 24, 25]
     my_motor = RpiMotorLib.BYJMotor("MyMotor", "28BYJ")
@@ -21,5 +24,5 @@ def turn_motor(steps):
         steptype="half", 
         initdelay=0.05)
     print("HELP")
-    # GPIO.cleanup()
+    GPIO.cleanup()
     return
