@@ -13,7 +13,8 @@ def turn_motor(number_of_steps, is_ccwise):
         ccwise=is_ccwise, 
         verbose=False, 
         steptype="half", 
-        initdelay=0.05)
+        initdelay=0.05
+    )
 
     GPIO.cleanup()
     return
