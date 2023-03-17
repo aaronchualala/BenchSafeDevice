@@ -20,7 +20,7 @@ def endpoint_1():
     # ——— data from user ———
     nipple_height = request.args.get('nipple_height')
     # ——— data from GPIO ———
-    vertical_distance_from_flat_bench_to_device = calculate_bench_distance.calculate_bench_distance()
+    vertical_distance_from_flat_bench_to_device = calculate_bench_distance.calculate_bench_distance(17,4)
 
     if vertical_distance_from_flat_bench_to_device == 0.0:
         return str("ERROR: 'vertical_distance_from_flat_bench_to_device' cannot be 0.0")
