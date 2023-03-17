@@ -26,16 +26,14 @@ def ultrasonic_dist(echo=17, trigger=4):
     time.sleep(0.00001)
     GPIO.output(pinTrigger, GPIO.LOW)
 
-    count = 30
-    while count != 0:
-        while GPIO.input(pinEcho)==0:
-            pulseStartTime = time.time()
-        while GPIO.input(pinEcho)==1:
-            pulseEndTime = time.time()
-        
-        pulseDuration = pulseEndTime - pulseStartTime
-        distance = round(pulseDuration*17150, 2)
-        print(f'distance: {distance} cm')
-        count -= 1
+    
+    while GPIO.input(pinEcho)==0:
+        pulseStartTime = time.time()
+    while GPIO.input(pinEcho)==1:
+        pulseEndTime = time.time()
+    
+    pulseDuration = pulseEndTime - pulseStartTime
+    distance = round(pulseDuration*17150, 2)
+    print(f'distance: {distance} cm')
     
     return distance
