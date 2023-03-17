@@ -1,11 +1,12 @@
 from flask import Flask, request
-from database import read_gym_admin_values
+from database import read_values
 from endpoint_handlers import get_angle_for_flat_bench
 from endpoint_handlers import get_angle_for_inclined_bench
 from actuators import turn_motor
 from ultrasonic import calculate_bench_distance
 
-GYM_ADMIN_VALUES = read_gym_admin_values.read_gym_admin_values()
+GYM_ADMIN_VALUES = read_values.read_gym_admin_values()
+DEVICE_STATE_VALUES = read_values.read_device_state_values()
 app = Flask(__name__)
 
 
@@ -19,8 +20,11 @@ def endpoint_1():
     # ——— data from user ———
     nipple_height = request.args.get('nipple_height')
     # ——— data from GPIO ———
-    vertical_distance_from_flat_bench_to_device = 2
+    vertical_distance_from_flat_bench_to_device = calculate_bench_distance.calculate_bench_distance()
 
+    if vertical_distance_from_flat_bench_to_device == 0.0:
+        return str("ERROR: 'vertical_distance_from_flat_bench_to_device' cannot be 0.0")
+        
     # calculations
     angle = get_angle_for_flat_bench.get_angle_for_flat_bench(
         bench_length, 
@@ -30,8 +34,11 @@ def endpoint_1():
     )
     
     # actuation
-    turn_motor.turn_motor(angle)
-    return str(1)
+    angle_delta = angle - DEVICE_STATE_VALUES['current_angle_from_vertical']
+    number_of_steps=angle_delta / DEVICE_STATE_VALUES['angle_change_for_each_step']
+    
+    turn_motor.turn_motor(number_of_steps)
+    return str(number_of_steps)
 
 
 @app.route('/angle-for-inclined-bench')
