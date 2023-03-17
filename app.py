@@ -22,6 +22,9 @@ def endpoint_1():
     # ——— data from GPIO ———
     vertical_distance_from_flat_bench_to_device = calculate_bench_distance.calculate_bench_distance()
 
+    if vertical_distance_from_flat_bench_to_device == 0.0:
+        return str("ERROR: 'vertical_distance_from_flat_bench_to_device' cannot be 0.0")
+        
     # calculations
     angle = get_angle_for_flat_bench.get_angle_for_flat_bench(
         bench_length, 
