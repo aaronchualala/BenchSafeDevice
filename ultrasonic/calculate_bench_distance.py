@@ -4,8 +4,7 @@ import time
 import RPi.GPIO as GPIO
 
 def calculate_bench_distance(echo, trigger):
-    count = 30
-    while count != 0:
+    for i in range(30):
         distance = ultrasonic(echo, trigger)
         print("distance: " + str(distance) + " cm")
         time.sleep(1)
