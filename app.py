@@ -21,9 +21,9 @@ def endpoint_1():
     nipple_height = request.args.get('nipple_height')
     # ——— data from GPIO ———
     vertical_distance_from_flat_bench_to_device = calculate_bench_distance.calculate_bench_distance(17,4)
-
     if vertical_distance_from_flat_bench_to_device == 0.0:
         return str("ERROR: 'vertical_distance_from_flat_bench_to_device' cannot be 0.0")
+    print('vertical_distance_from_flat_bench_to_device: ', vertical_distance_from_flat_bench_to_device)
 
     # calculations
     angle = get_angle_for_flat_bench.get_angle_for_flat_bench(
@@ -32,16 +32,17 @@ def endpoint_1():
         nipple_height,
         vertical_distance_from_flat_bench_to_device
     )
-
-    # storage
+    print('angle: ', angle)
     steps_to_revert = DEVICE_STATE_VALUES['steps_from_vertical_in_ccwise_direction']
     steps_to_new_pos = abs(int(angle / 0.703125)) # angle_change_for_each_step
+    print('steps_to_revert', steps_to_revert)
+    print('steps_to_new_pos', steps_to_new_pos)
+
+    # storage
     DEVICE_STATE_VALUES['steps_from_vertical_in_ccwise_direction'] = steps_to_new_pos
     io_values.write_device_state_values(DEVICE_STATE_VALUES)
     
     # actuation
-    print(steps_to_revert)
-    print(steps_to_new_pos)
     turn_motor.turn_motor(steps_to_revert, is_ccwise=False)
     turn_motor.turn_motor(steps_to_new_pos, is_ccwise=True)
 

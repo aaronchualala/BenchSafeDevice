@@ -12,7 +12,7 @@ def turn_motor(number_of_steps, is_ccwise):
         steps=number_of_steps, 
         ccwise=is_ccwise, 
         verbose=False, 
-        steptype="half", 
+        steptype="half", # has 512 steps for 360 degrees
         initdelay=0.05
     )
 
