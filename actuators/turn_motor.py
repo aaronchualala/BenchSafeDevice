@@ -16,6 +16,5 @@ def turn_motor(steps):
         verbose=False, 
         steptype="half", 
         initdelay=0.05)
-    print("HELP")
-    # GPIO.cleanup()
+    GPIO.cleanup()
     return
