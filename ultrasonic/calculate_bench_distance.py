@@ -35,7 +35,7 @@ def ultrasonic_dist(echo=17, trigger=4):
         
         pulseDuration = pulseEndTime - pulseStartTime
         distance = round(pulseDuration*17150, 2)
-        print(f'distance: {distance} cm')
+        print("distance: " + str(distance) + " cm")
         count -= 1
     
     return distance
