@@ -45,10 +45,7 @@ def endpoint_1():
     turn_motor.turn_motor(steps_to_revert, is_ccwise=False)
     turn_motor.turn_motor(steps_to_new_pos, is_ccwise=True)
 
-    # results
-    screen_output = "number_of_steps: " + str(steps_to_new_pos) + "\n\n " + "is_ccwise: " + str(is_ccwise)
-
-    return screen_output
+    return "OK"
 
 @app.route('/angle-for-inclined-bench')
 # http://127.0.0.1:5000/angle-for-inclined-bench?nipple_height=1.2
