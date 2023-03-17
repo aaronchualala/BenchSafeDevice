@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 
 @app.route('/angle-for-flat-bench') 
-# http://127.0.0.1:5000/angle-for-flat-bench?nipple_height=1.2
+# http://127.0.0.1:5000/angle-for-flat-bench?nipple_height=1.4
 def endpoint_1():
 
     # ——— data from admin ———
@@ -49,7 +49,7 @@ def endpoint_1():
     return "OK"
 
 @app.route('/angle-for-inclined-bench')
-# http://127.0.0.1:5000/angle-for-inclined-bench?nipple_height=1.2
+# http://127.0.0.1:5000/angle-for-inclined-bench?nipple_height=1.4
 def endpoint_2():
 
     # ——— data from admin ———
