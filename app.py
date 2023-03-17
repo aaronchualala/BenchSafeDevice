@@ -1,11 +1,12 @@
 from flask import Flask, request
-from database import read_gym_admin_values
+from database import read_values
 from endpoint_handlers import get_angle_for_flat_bench
 from endpoint_handlers import get_angle_for_inclined_bench
 from actuators import turn_motor
 from ultrasonic import calculate_bench_distance
 
-GYM_ADMIN_VALUES = read_gym_admin_values.read_gym_admin_values()
+GYM_ADMIN_VALUES = read_values.read_gym_admin_values()
+DEVICE_STATE_VALUES = read_values.read_device_state_values()
 app = Flask(__name__)
 
 
@@ -30,8 +31,11 @@ def endpoint_1():
     )
     
     # actuation
-    turn_motor.turn_motor(angle)
-    return str(angle)
+    angle_delta = angle - DEVICE_STATE_VALUES['current_angle_from_vertical']
+    number_of_steps=angle_delta / DEVICE_STATE_VALUES['angle_change_for_each_step']
+    
+    turn_motor.turn_motor(number_of_steps)
+    return str(number_of_steps)
 
 
 @app.route('/angle-for-inclined-bench')
