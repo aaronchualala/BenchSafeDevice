@@ -24,7 +24,7 @@ def endpoint_1():
 
     if vertical_distance_from_flat_bench_to_device == 0.0:
         return str("ERROR: 'vertical_distance_from_flat_bench_to_device' cannot be 0.0")
-        
+
     # calculations
     angle = get_angle_for_flat_bench.get_angle_for_flat_bench(
         bench_length, 
@@ -35,10 +35,12 @@ def endpoint_1():
     
     # actuation
     angle_delta = angle - DEVICE_STATE_VALUES['current_angle_from_vertical']
-    number_of_steps=angle_delta / DEVICE_STATE_VALUES['angle_change_for_each_step']
-    
-    turn_motor.turn_motor(number_of_steps)
-    return str(number_of_steps)
+    steps_delta = angle_delta / DEVICE_STATE_VALUES['angle_change_for_each_step']
+    number_of_steps=abs(int(steps_delta))
+    is_ccwise = True if steps_delta < 0 else False
+
+    turn_motor.turn_motor(number_of_steps, is_ccwise)
+    return "number_of_steps: " + str(number_of_steps) + "\n is_ccwise: " + str(is_ccwise)
 
 
 @app.route('/angle-for-inclined-bench')

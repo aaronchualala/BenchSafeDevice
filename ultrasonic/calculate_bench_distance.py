@@ -3,15 +3,12 @@ from gpiozero import DistanceSensor
 import time
 import RPi.GPIO as GPIO
 
-# ultrasonic = DistanceSensor(echo=17, trigger=4, max_distance = 300)
-
-# def calculate_bench_distance():
-#     count = 30
-#     while count != 0:
-#         dist = ultrasonic.distance*300
-#         print(f"{dist}cm")
-#         time.sleep(1)
-#         count -=1
+def calculate_bench_distance():
+    count = 6
+    while count != 0:
+        print( str(ultrasonic.distance*300) + " cm")
+        time.sleep(0.5)
+        count -=1
     
 #     return ultrasonic.distance*300
 
