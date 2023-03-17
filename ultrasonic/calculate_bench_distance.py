@@ -29,5 +29,5 @@ def ultrasonic(echo, trigger):
     
     pulseDuration = pulseEndTime - pulseStartTime
     distance = round(pulseDuration*17150, 2)
-
+    GPIO.cleanup()
     return distance
