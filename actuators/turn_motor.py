@@ -12,15 +12,14 @@ def turn_motor(steps):
     GpioPins = [18, 23, 24, 25]
     my_motor = RpiMotorLib.BYJMotor("MyMotor", "28BYJ")
     time.sleep(0.1)
-
-    print("HELP")
     my_motor.motor_run(
         gpiopins=GpioPins, 
         wait=.001, 
-        steps=512, #abs(steps), 
-        ccwise=False, # direction, 
+        steps=abs(int(steps)), 
+        ccwise=direction, 
         verbose=False, 
         steptype="half", 
         initdelay=0.05)
-    GPIO.cleanup()
+    print("HELP")
+    # GPIO.cleanup()
     return
