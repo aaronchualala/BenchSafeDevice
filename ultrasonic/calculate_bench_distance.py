@@ -14,7 +14,7 @@ import RPi.GPIO as GPIO
 
 
 def calculate_bench_distance(echo=17, trigger=4):
-    GPIO.setmode(GPIO.BOARD)
+    # GPIO.setmode(GPIO.BOARD)
     pinTrigger = trigger
     pinEcho = echo
     GPIO.setup(pinTrigger, GPIO.OUT)
