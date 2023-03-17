@@ -17,6 +17,7 @@ def calculate_bench_distance(echo, trigger):
         distance = ultrasonic(echo, trigger)
         print("distance: " + str(distance) + " cm")
         time.sleep(1)
+    return distance
 
 #17,4
 
