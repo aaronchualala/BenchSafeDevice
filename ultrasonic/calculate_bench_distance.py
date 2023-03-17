@@ -7,7 +7,7 @@ def calculate_bench_distance(echo, trigger):
     result = 0.00
     for i in range(6):
         distance = ultrasonic(echo, trigger)
-        print("distance: " + str(distance) + " cm")
+        print("distance: " + str(distance) + " m")
         result = distance
         time.sleep(0.5)
     GPIO.cleanup()
@@ -36,4 +36,4 @@ def ultrasonic(echo, trigger):
     
     pulseDuration = pulseEndTime - pulseStartTime
     distance = round(pulseDuration*17150, 2)
-    return distance
+    return distance/100
