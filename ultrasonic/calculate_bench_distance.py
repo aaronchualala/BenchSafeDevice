@@ -23,6 +23,8 @@ def ultrasonic(echo, trigger):
     time.sleep(0.00001)
     GPIO.output(pinTrigger, GPIO.LOW)
     
+    pulseStartTime = 0
+    pulseEndTime = 0
     while GPIO.input(pinEcho)==0:
         pulseStartTime = time.time()
     while GPIO.input(pinEcho)==1:
