@@ -40,6 +40,8 @@ def endpoint_1():
     io_values.write_device_state_values(DEVICE_STATE_VALUES)
     
     # actuation
+    print(steps_to_revert)
+    print(steps_to_new_pos)
     turn_motor.turn_motor(steps_to_revert, is_ccwise=False)
     turn_motor.turn_motor(steps_to_new_pos, is_ccwise=True)
 
