@@ -49,7 +49,7 @@ def endpoint_1():
     turn_motor.turn_motor(steps_to_revert, is_ccwise=False)
     turn_motor.turn_motor(steps_to_new_pos, is_ccwise=True)
 
-    return "OK"
+    return "OK, Motor should be turning"
 
 @app.route('/angle-for-inclined-bench')
 # http://127.0.0.1:5000/angle-for-inclined-bench?nipple_height=1.4
@@ -64,17 +64,15 @@ def endpoint_2():
     vertical_distance_from_flat_bench_to_device = 2
     vertical_distance_from_inclined_bench_to_device = 1.5 # diff
     angle_between_flat_bench_and_inclined_bench = 30 # diff
-
-    return str(
-        get_angle_for_inclined_bench.get_angle_for_inclined_bench(
-            bench_length, 
-            angle_between_flat_bench_and_slope,
-            nipple_height,
-            vertical_distance_from_flat_bench_to_device,
-            vertical_distance_from_inclined_bench_to_device, # diff
-            angle_between_flat_bench_and_inclined_bench # diff
-        ))
-
+    angle = get_angle_for_inclined_bench.get_angle_for_inclined_bench(
+        bench_length, 
+        angle_between_flat_bench_and_slope,
+        nipple_height,
+        vertical_distance_from_flat_bench_to_device,
+        vertical_distance_from_inclined_bench_to_device, # diff
+        angle_between_flat_bench_and_inclined_bench # diff
+    )
+    return "OK, Motor should be turning"
 
 @app.route('/toggle-relay')
 # http://127.0.0.1:5000/toggle-relay?state=on
@@ -82,11 +80,13 @@ def endpoint_2():
 def endpoint_3():
     state = request.args.get('state')
     toggle_relay.toggle_relay(state)
-    return "Should have turned " + state
+    return "OK, Should have turned " + state
 
 @app.route('/update-json')
 def endpoint_4():
-    return "ENDPOINT4"
+    # request.json: parsed JSON data. The request must have the application/json content type
+    io_values.write_gym_admin_values(request.json)
+    return "OK, Should have updated JSON"
 
 if __name__ == '__main__':
     app.run(debug=True, port=80, host='0.0.0.0')
