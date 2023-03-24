@@ -74,6 +74,9 @@ def endpoint_2():
             angle_between_flat_bench_and_inclined_bench # diff
         ))
 
+@app.route('/update-json')
+def endpoint_3():
+    return "ENDPOINT3"
 
 
 if __name__ == '__main__':
