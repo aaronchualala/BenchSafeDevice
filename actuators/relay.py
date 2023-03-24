@@ -1,13 +1,19 @@
 import time
 import RPi.GPIO as GPIO
 
+gpio_pin = 2
+dur = 2
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(2, GPIO.OUT)
+GPIO.setup(gpio_pin, GPIO.OUT)
 
-GPIO.output(2, GPIO.LOW)
-time.sleep(2)
-GPIO.output(2, GPIO.HIGH)
-time.sleep(2)
-GPIO.output(2, GPIO.LOW)
+try: 
+    while True:
+        GPIO.output(gpio_pin, GPIO.LOW)
+        print("Relay Off")
+        time.sleep(dur)
+        GPIO.output(gpio_pin, GPIO.HIGH)
 
-GPIO.cleanup()
+        print("Relay On")
+        time.sleep(dur)
+finally:
+    GPIO.cleanup()
