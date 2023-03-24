@@ -1,4 +1,5 @@
 from flask import Flask, request
+from flask_cors import CORS
 from database import io_values
 from endpoint_handlers import get_angle_for_flat_bench
 from endpoint_handlers import get_angle_for_inclined_bench
@@ -8,7 +9,8 @@ from ultrasonic import calculate_bench_distance
 GYM_ADMIN_VALUES = io_values.read_gym_admin_values()
 DEVICE_STATE_VALUES = io_values.read_device_state_values()
 app = Flask(__name__)
-
+cors = CORS(app)
+app.config['COR_HEADERS'] = 'Content-Type'
 
 @app.route('/angle-for-flat-bench') 
 # http://127.0.0.1:5000/angle-for-flat-bench?nipple_height=1.4
