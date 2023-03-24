@@ -1,12 +1,13 @@
 import time
 import RPi.GPIO as GPIO
 
-gpio_pin = 21
-dur = 1
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(gpio_pin, GPIO.OUT)
 
 def toggle_relay(state):
+    gpio_pin = 21
+    dur = 1
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(gpio_pin, GPIO.OUT)
+
     if state == "on":
         GPIO.output(gpio_pin, GPIO.HIGH)
         print("Relay On")
