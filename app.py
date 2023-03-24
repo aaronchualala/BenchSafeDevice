@@ -4,7 +4,7 @@ from database import io_values
 from endpoint_handlers import get_angle_for_flat_bench
 from endpoint_handlers import get_angle_for_inclined_bench
 from actuators import turn_motor
-from actuators import relay
+from actuators import toggle_relay
 from ultrasonic import calculate_bench_distance
 
 GYM_ADMIN_VALUES = io_values.read_gym_admin_values()
@@ -75,13 +75,18 @@ def endpoint_2():
             angle_between_flat_bench_and_inclined_bench # diff
         ))
 
-@app.route('/update-json')
-def endpoint_3():
-    return "ENDPOINT3"
 
 @app.route('/toggle-relay')
+# http://127.0.0.1:5000/toggle-relay?state=on
+# http://127.0.0.1:5000/toggle-relay?state=off
+def endpoint_3():
+    state = request.args.get('state')
+    toggle_relay.toggle_relay(state)
+    return "Should have turned " + state
+
+@app.route('/update-json')
 def endpoint_4():
-    return "ENDPOINT3"
+    return "ENDPOINT4"
 
 if __name__ == '__main__':
     app.run(debug=True, port=80, host='0.0.0.0')
