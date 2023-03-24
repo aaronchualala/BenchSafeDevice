@@ -4,6 +4,7 @@ from database import io_values
 from endpoint_handlers import get_angle_for_flat_bench
 from endpoint_handlers import get_angle_for_inclined_bench
 from actuators import turn_motor
+from actuators import relay
 from ultrasonic import calculate_bench_distance
 
 GYM_ADMIN_VALUES = io_values.read_gym_admin_values()
@@ -78,6 +79,9 @@ def endpoint_2():
 def endpoint_3():
     return "ENDPOINT3"
 
+@app.route('/toggle-relay')
+def endpoint_4():
+    return "ENDPOINT3"
 
 if __name__ == '__main__':
     app.run(debug=True, port=80, host='0.0.0.0')
