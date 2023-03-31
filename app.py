@@ -38,8 +38,8 @@ def endpoint_1():
     print('angle: ', angle)
     steps_to_revert = DEVICE_STATE_VALUES['steps_from_vertical_in_ccwise_direction']
     steps_to_new_pos = abs(int(angle / 0.703125)) # angle_change_for_each_step
-    print('steps_to_revert', steps_to_revert)
-    print('steps_to_new_pos', steps_to_new_pos)
+    print('steps_to_revert: ', steps_to_revert)
+    print('steps_to_new_pos: ', steps_to_new_pos)
 
     # storage
     DEVICE_STATE_VALUES['steps_from_vertical_in_ccwise_direction'] = steps_to_new_pos
