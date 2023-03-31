@@ -94,7 +94,7 @@ def endpoint_5():
     number_of_steps = request.args.get('number_of_steps')
     is_ccwise = request.args.get('is_ccwise')
     turn_motor.calibrate_motor(number_of_steps, is_ccwise)
-    return "OK, Should have turned"
+    return "OK, Motor should be turning"
 
 
 if __name__ == '__main__':
