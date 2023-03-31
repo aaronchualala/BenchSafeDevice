@@ -96,6 +96,10 @@ def endpoint_5():
     turn_motor.calibrate_motor(number_of_steps, is_ccwise)
     return "OK, Motor should be turning"
 
+@app.route('/ping')
+def endpoint_6():
+    return "Hello World!"
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=80, host='0.0.0.0')
