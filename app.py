@@ -88,5 +88,14 @@ def endpoint_4():
     io_values.write_gym_admin_values(request.json)
     return "OK, Should have updated JSON"
 
+@app.route('/calibrate-motor')
+# http://127.0.0.1:5000/calibrate-motor?number_of_steps=5&is_ccwise=True
+def endpoint_5():
+    number_of_steps = request.args.get('number_of_steps')
+    is_ccwise = request.args.get('is_ccwise')
+    turn_motor.calibrate_motor(number_of_steps, is_ccwise)
+    return "OK, Should have turned"
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=80, host='0.0.0.0')
