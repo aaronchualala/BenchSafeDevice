@@ -10,7 +10,7 @@ app.config['COR_HEADERS'] = 'Content-Type'
 @app.route('/get_angle_between_flat_bench_and_inclined_bench')
 def endpoint_1():
     angle = 0
-    for i in range(10):
+    for i in range(2):
         angle = gyroscope.get_angle_between_flat_bench_and_inclined_bench()
         print(angle)
         sleep(1)
