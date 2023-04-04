@@ -1,0 +1,5 @@
+click==8.1.3
+Flask==2.2.3
+flask_cors==3.0.10
+gpiozero==1.6.2
+RpiMotorLib==3.2
