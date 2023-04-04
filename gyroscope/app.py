@@ -14,7 +14,7 @@ def endpoint_1():
         angle = gyroscope.get_angle_between_flat_bench_and_inclined_bench()
         print(angle)
         sleep(1)
-    return angle
+    return "success"
 
 if __name__ == '__main__':
     app.run(debug=True, port=80, host='0.0.0.0')
