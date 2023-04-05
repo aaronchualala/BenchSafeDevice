@@ -27,6 +27,7 @@ def get_angle_for_flat_bench(
     # angle = math.atan( ll / vertical_distance_from_bench_to_device ) * 180 / math.pi
 
     y = B - H* (math.tan(theta)) - N
+    print(y)
     angle = math.atan((x+y)/H)* 180 / math.pi
 
     print("angle in get_angle: ", angle)
