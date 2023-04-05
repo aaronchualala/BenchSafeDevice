@@ -9,12 +9,9 @@ app.config['COR_HEADERS'] = 'Content-Type'
 
 @app.route('/get_angle_between_flat_bench_and_inclined_bench')
 def endpoint_1():
-    angle = 0
-    for i in range(2):
-        angle = gyroscope.get_angle_between_flat_bench_and_inclined_bench()
-        print(angle)
-        sleep(1)
-    return "success"
+    angle = gyroscope.get_angle_between_flat_bench_and_inclined_bench()
+    print(angle)
+    return str(angle)
 
 if __name__ == '__main__':
     app.run(debug=True, port=80, host='0.0.0.0')
