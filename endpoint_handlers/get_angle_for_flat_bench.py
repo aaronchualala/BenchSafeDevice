@@ -29,6 +29,8 @@ def get_angle_for_flat_bench(
     y = B - H* (math.tan(theta)) - N
     print("y")
     print(y)
+    print(theta)
+    print(math.tan(theta))
     angle = math.atan((x+y)/H)* 180 / math.pi
 
     print("angle in get_angle: ", angle)
