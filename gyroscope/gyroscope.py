@@ -23,4 +23,4 @@ def get_angle_between_flat_bench_and_inclined_bench():
 
     # You can return either roll or pitch depending on the angle you want to measure
     # relative to the horizontal plane
-    return roll #, pitch
+    return abs(roll) #, pitch
