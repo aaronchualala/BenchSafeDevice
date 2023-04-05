@@ -107,7 +107,13 @@ def endpoint_3():
 @app.route('/update-json')
 def endpoint_4():
     # request.json: parsed JSON data. The request must have the application/json content type
-    io_values.write_gym_admin_values(request.json)
+    bench_length = request.args.get('bench_length')
+    angle_between_flat_bench_and_slope = request.args.get('angle_between_flat_bench_and_slope')
+    print(request.args)
+    io_values.write_gym_admin_values({
+        'bench_length': bench_length,
+        'angle_between_flat_bench_and_slope': angle_between_flat_bench_and_slope
+    })
     return "OK, Should have updated JSON"
 
 @app.route('/calibrate-motor')
