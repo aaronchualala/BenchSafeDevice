@@ -64,8 +64,7 @@ def endpoint_2():
     # ——— data from user ———
     nipple_height = float(request.args.get('nipple_height'))
     # ——— data from GPIO ———
-    vertical_distance_from_flat_bench_to_device = 2
-    vertical_distance_from_inclined_bench_to_device = 1.5
+    vertical_distance_from_flat_bench_to_device = calculate_bench_distance.calculate_bench_distance(17,4)
 
     angle_between_flat_bench_and_inclined_bench = 30
     # angle_between_flat_bench_and_inclined_bench = requests.get('http://172.20.10.12:5000/get_angle_between_flat_bench_and_inclined_bench')
@@ -75,7 +74,6 @@ def endpoint_2():
         angle_between_flat_bench_and_slope,
         nipple_height,
         vertical_distance_from_flat_bench_to_device,
-        vertical_distance_from_inclined_bench_to_device, # diff
         angle_between_flat_bench_and_inclined_bench # diff
     )
     print('angle: ', angle)

@@ -5,7 +5,6 @@ def get_angle_for_inclined_bench(
     angle_between_bench_and_slope,
     nipple_height,
     vertical_distance_from_flat_bench_to_device,
-    vertical_distance_from_inclined_bench_to_device, # diff
     angle_between_flat_bench_and_inclined_bench # diff
     ):
 
