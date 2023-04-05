@@ -12,11 +12,11 @@ def get_angle_for_inclined_bench(
     x = 0.3
     
     #horizontal distance from device to bar
-    B = bench_length
-    theta =  angle_between_flat_bench_and_slope
-    y = angle_between_flat_bench_and_inclined_bench
-    N = nipple_height
-    H = vertical_distance_from_flat_bench_to_device
+    B = float(bench_length)
+    theta =  float(angle_between_flat_bench_and_slope)
+    y = float(angle_between_flat_bench_and_inclined_bench)
+    N = float(nipple_height)
+    H = float(vertical_distance_from_flat_bench_to_device)
 
     l = B*math.cos(y) -  N*math.cos(y) - math.tan(theta)*(H - N*math.sin*(y))
     results = math.atan((H - B* math.sin(y))/(x+l))
