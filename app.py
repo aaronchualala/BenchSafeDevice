@@ -19,8 +19,8 @@ app.config['COR_HEADERS'] = 'Content-Type'
 def endpoint_1():
 
     # ——— data from admin ———
-    bench_length = GYM_ADMIN_VALUES['bench_length']
-    angle_between_flat_bench_and_slope = GYM_ADMIN_VALUES['angle_between_flat_bench_and_slope']
+    bench_length = float(GYM_ADMIN_VALUES['bench_length'])
+    angle_between_flat_bench_and_slope = float(GYM_ADMIN_VALUES['angle_between_flat_bench_and_slope'])
     # ——— data from user ———
     nipple_height = float(request.args.get('nipple_height'))
     # ——— data from GPIO ———
@@ -59,8 +59,8 @@ def endpoint_1():
 def endpoint_2():
 
     # ——— data from admin ———
-    bench_length = GYM_ADMIN_VALUES['bench_length']
-    angle_between_flat_bench_and_slope = GYM_ADMIN_VALUES['angle_between_flat_bench_and_slope']
+    bench_length = float(GYM_ADMIN_VALUES['bench_length'])
+    angle_between_flat_bench_and_slope = float(GYM_ADMIN_VALUES['angle_between_flat_bench_and_slope'])
     # ——— data from user ———
     nipple_height = float(request.args.get('nipple_height'))
     # ——— data from GPIO ———
