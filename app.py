@@ -50,6 +50,8 @@ def endpoint_1():
     turn_motor.turn_motor(steps_to_revert, is_ccwise=False)
     turn_motor.turn_motor(steps_to_new_pos, is_ccwise=True)
 
+    toggle_relay.toggle_relay("on")
+
     return "OK, Motor should be turning"
 
 @app.route('/angle-for-inclined-bench')
@@ -89,7 +91,9 @@ def endpoint_2():
     # actuation
     turn_motor.turn_motor(steps_to_revert, is_ccwise=False)
     turn_motor.turn_motor(steps_to_new_pos, is_ccwise=True)
-    
+
+    toggle_relay.toggle_relay("on")
+
     return "OK, Motor should be turning"
 
 @app.route('/toggle-relay')
