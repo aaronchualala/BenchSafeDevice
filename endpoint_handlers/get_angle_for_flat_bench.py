@@ -10,12 +10,15 @@ def get_angle_for_flat_bench(
     H_over_tan_theta = (vertical_distance_from_bench_to_device / math.tan( in_rad ))
     l = float(nipple_height) + H_over_tan_theta
 
-    if bench_length - l < 0:
-        return "ERROR"
-    else:
-        ll = bench_length - l
+    # if bench_length - l < 0:
+    #     return "ERROR"
+    # else:
+    #     ll = bench_length - l
     
-    angle = math.atan( ll / vertical_distance_from_bench_to_device ) * 180 / math.pi
+    # angle = math.atan( ll / vertical_distance_from_bench_to_device ) * 180 / math.pi
+    angle = math.tan((l+0.3)/vertical_distance_from_bench_to_device)
+    print("angle in get_angle: ", angle)
+
     return angle
 
 if __name__ == "__main__":
