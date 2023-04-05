@@ -22,7 +22,7 @@ def endpoint_1():
     bench_length = GYM_ADMIN_VALUES['bench_length']
     angle_between_flat_bench_and_slope = GYM_ADMIN_VALUES['angle_between_flat_bench_and_slope']
     # ——— data from user ———
-    nipple_height = request.args.get('nipple_height')
+    nipple_height = float(request.args.get('nipple_height'))
     # ——— data from GPIO ———
     vertical_distance_from_flat_bench_to_device = calculate_bench_distance.calculate_bench_distance(17,4)
     if vertical_distance_from_flat_bench_to_device == 0.0:
@@ -62,7 +62,7 @@ def endpoint_2():
     bench_length = GYM_ADMIN_VALUES['bench_length']
     angle_between_flat_bench_and_slope = GYM_ADMIN_VALUES['angle_between_flat_bench_and_slope']
     # ——— data from user ———
-    nipple_height = request.args.get('nipple_height')
+    nipple_height = float(request.args.get('nipple_height'))
     # ——— data from GPIO ———
     vertical_distance_from_flat_bench_to_device = 2
     vertical_distance_from_inclined_bench_to_device = 1.5
