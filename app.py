@@ -115,7 +115,7 @@ def endpoint_4():
 def endpoint_5():
     number_of_steps = request.args.get('number_of_steps')
     is_ccwise = request.args.get('is_ccwise')
-    turn_motor.calibrate_motor(number_of_steps, is_ccwise)
+    turn_motor.calibrate_motor(int(number_of_steps), bool(is_ccwise))
     return "OK, Motor should be turning"
 
 @app.route('/ping')
