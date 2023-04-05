@@ -16,7 +16,7 @@ def turn_motor(number_of_steps, is_ccwise):
         initdelay=0.05
     )
 
-    # GPIO.cleanup()
+    GPIO.cleanup()
     return
 
 
@@ -33,5 +33,5 @@ def calibrate_motor(number_of_steps=5, is_ccwise=True):
         initdelay=0.05
     )
 
-    # GPIO.cleanup()
+    GPIO.cleanup()
     return
