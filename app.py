@@ -67,8 +67,8 @@ def endpoint_2():
     vertical_distance_from_flat_bench_to_device = 2
     vertical_distance_from_inclined_bench_to_device = 1.5
 
-    # angle_between_flat_bench_and_inclined_bench = 30
-    angle_between_flat_bench_and_inclined_bench = requests.get('http://172.20.10.12:5000/get_angle_between_flat_bench_and_inclined_bench')
+    angle_between_flat_bench_and_inclined_bench = 30
+    # angle_between_flat_bench_and_inclined_bench = requests.get('http://172.20.10.12:5000/get_angle_between_flat_bench_and_inclined_bench')
 
     angle = get_angle_for_inclined_bench.get_angle_for_inclined_bench(
         bench_length, 
@@ -92,7 +92,7 @@ def endpoint_2():
     turn_motor.turn_motor(steps_to_revert, is_ccwise=False)
     turn_motor.turn_motor(steps_to_new_pos, is_ccwise=True)
 
-    # toggle_relay.toggle_relay("on")
+    toggle_relay.toggle_relay("on")
 
     return "OK, Motor should be turning"
 
