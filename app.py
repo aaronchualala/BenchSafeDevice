@@ -92,7 +92,7 @@ def endpoint_2():
     turn_motor.turn_motor(steps_to_revert, is_ccwise=False)
     turn_motor.turn_motor(steps_to_new_pos, is_ccwise=True)
 
-    toggle_relay.toggle_relay("on")
+    # toggle_relay.toggle_relay("on")
 
     return "OK, Motor should be turning"
 
