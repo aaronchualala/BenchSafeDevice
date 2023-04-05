@@ -16,10 +16,6 @@ def get_angle_for_flat_bench(
     N = float(nipple_height)
     H = float(vertical_distance_from_bench_to_device)
 
-    print(type(B))
-    print(type(theta))
-    print(type(N))
-    print(type(H))
     # H_over_tan_theta = (vertical_distance_from_bench_to_device / math.tan( in_rad ))
     # l = float(nipple_height) + H_over_tan_theta
 

@@ -2,26 +2,30 @@ import math
 
 def get_angle_for_inclined_bench(
     bench_length, 
-    angle_between_flat_bench_and_slope,
+    angle_between_bench_and_slope,
     nipple_height,
     vertical_distance_from_flat_bench_to_device,
     vertical_distance_from_inclined_bench_to_device, # diff
     angle_between_flat_bench_and_inclined_bench # diff
     ):
+    in_rad = (angle_between_bench_and_slope / 180 )* math.pi
+    in_rad_2 = (angle_between_flat_bench_and_inclined_bench / 180 )* math.pi
 
     x = 0.3
     
     #horizontal distance from device to bar
     B = float(bench_length)
-    theta =  float(angle_between_flat_bench_and_slope)
-    y = float(angle_between_flat_bench_and_inclined_bench)
+    theta =  float(in_rad)
+    y = float(in_rad_2)
     N = float(nipple_height)
     H = float(vertical_distance_from_flat_bench_to_device)
 
-    l = B*math.cos(y) -  N*math.cos(y) - math.tan(theta)*(H - N*math.sin*(y))
-    results = math.atan((H - B* math.sin(y))/(x+l))
+    l = B*math.cos(y) -  N*math.cos(y) - math.tan(theta)*(H - N*math.sin(y))
+    angle = math.atan((H - B* math.sin(y))/(x+l)) * 180 / math.pi
 
-    return results
+    print("angle in get_angle: ", angle)
+
+    return angle
 
     # L = ( vertical_distance_from_flat_bench_to_device - vertical_distance_from_inclined_bench_to_device) / math.tan(angle_between_flat_bench_and_inclined_bench)
 
