@@ -8,6 +8,8 @@ def get_angle_for_inclined_bench(
     vertical_distance_from_inclined_bench_to_device, # diff
     angle_between_flat_bench_and_inclined_bench # diff
     ):
+
+    print("bench incline angle: ", angle_between_flat_bench_and_inclined_bench)
     in_rad = (angle_between_bench_and_slope / 180 )* math.pi
     in_rad_2 = (angle_between_flat_bench_and_inclined_bench / 180 )* math.pi
 
