@@ -16,6 +16,11 @@ def turn_motor(number_of_steps, is_ccwise):
         initdelay=0.05
     )
 
+    gpio_pin = 21
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(gpio_pin, GPIO.OUT)
+    GPIO.output(gpio_pin, GPIO.HIGH)
+
     GPIO.cleanup()
     return
 
