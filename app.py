@@ -6,6 +6,7 @@ from endpoint_handlers import get_angle_for_inclined_bench
 from actuators import turn_motor
 from actuators import toggle_relay
 from ultrasonic import calculate_bench_distance
+import requests
 
 GYM_ADMIN_VALUES = io_values.read_gym_admin_values()
 DEVICE_STATE_VALUES = io_values.read_device_state_values()
@@ -62,8 +63,11 @@ def endpoint_2():
     nipple_height = request.args.get('nipple_height')
     # ——— data from GPIO ———
     vertical_distance_from_flat_bench_to_device = 2
-    vertical_distance_from_inclined_bench_to_device = 1.5 # diff
-    angle_between_flat_bench_and_inclined_bench = 30 # diff
+    vertical_distance_from_inclined_bench_to_device = 1.5
+
+    # angle_between_flat_bench_and_inclined_bench = 30
+    angle_between_flat_bench_and_inclined_bench = requests.get('http://172.20.10.12:5000/get_angle_between_flat_bench_and_inclined_bench')
+
     angle = get_angle_for_inclined_bench.get_angle_for_inclined_bench(
         bench_length, 
         angle_between_flat_bench_and_slope,
@@ -72,6 +76,20 @@ def endpoint_2():
         vertical_distance_from_inclined_bench_to_device, # diff
         angle_between_flat_bench_and_inclined_bench # diff
     )
+    print('angle: ', angle)
+    steps_to_revert = DEVICE_STATE_VALUES['steps_from_vertical_in_ccwise_direction']
+    steps_to_new_pos = abs(int(angle / 0.703125)) # angle_change_for_each_step
+    print('steps_to_revert: ', steps_to_revert)
+    print('steps_to_new_pos: ', steps_to_new_pos)
+
+    # storage
+    DEVICE_STATE_VALUES['steps_from_vertical_in_ccwise_direction'] = steps_to_new_pos
+    io_values.write_device_state_values(DEVICE_STATE_VALUES)
+    
+    # actuation
+    turn_motor.turn_motor(steps_to_revert, is_ccwise=False)
+    turn_motor.turn_motor(steps_to_new_pos, is_ccwise=True)
+    
     return "OK, Motor should be turning"
 
 @app.route('/toggle-relay')
