@@ -20,7 +20,7 @@ def turn_motor(number_of_steps, is_ccwise):
     return
 
 
-def calibrate_motor(number_of_steps=5, is_ccwise=True):
+def calibrate_motor(number_of_steps, is_ccwise):
     my_motor = RpiMotorLib.BYJMotor("MyMotor", "28BYJ")
     
     my_motor.motor_run(
