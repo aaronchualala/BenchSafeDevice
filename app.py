@@ -66,8 +66,7 @@ def endpoint_2():
     # ——— data from GPIO ———
     vertical_distance_from_flat_bench_to_device = calculate_bench_distance.calculate_bench_distance(17,4)
 
-    user_angle = float(request.args.get('angle'))
-    angle_between_flat_bench_and_inclined_bench = user_angle if user_angle else 30.0
+    angle_between_flat_bench_and_inclined_bench = float(request.args.get('angle')) if request.args.get('angle') is not None else 30.0
     # angle_between_flat_bench_and_inclined_bench = requests.get('http://172.20.10.12:5000/get_angle_between_flat_bench_and_inclined_bench')
 
     angle = get_angle_for_inclined_bench.get_angle_for_inclined_bench(
