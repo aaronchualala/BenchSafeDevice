@@ -12,7 +12,7 @@ def get_angle_for_inclined_bench(
     in_rad = (angle_between_bench_and_slope / 180 )* math.pi
     in_rad_2 = (angle_between_flat_bench_and_inclined_bench / 180 )* math.pi
 
-    x = 0.29
+    x = 0.275
     
     #horizontal distance from device to bar
     B = float(bench_length)
