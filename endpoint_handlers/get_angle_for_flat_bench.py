@@ -9,7 +9,7 @@ def get_angle_for_flat_bench(
     in_rad = (angle_between_bench_and_slope / 180 )* math.pi
 
     #horizontal distance from device to bar
-    x = 0.275
+    x = 0.285
 
     B = float(bench_length)
     theta =  float(in_rad)
