@@ -55,7 +55,7 @@ def endpoint_1():
     return "OK, Motor should be turning"
 
 @app.route('/angle-for-inclined-bench')
-# http://127.0.0.1:5000/angle-for-inclined-bench?nipple_height=1.4&angle=30
+# http://127.0.0.1:5000/angle-for-inclined-bench?nipple_height=1.4&angle=60
 def endpoint_2():
 
     # ——— data from admin ———
@@ -66,7 +66,7 @@ def endpoint_2():
     # ——— data from GPIO ———
     vertical_distance_from_flat_bench_to_device = 1.20 # calculate_bench_distance.calculate_bench_distance(17,4)
 
-    angle_between_flat_bench_and_inclined_bench = float(request.args.get('angle')) if request.args.get('angle') is not None else 30.0
+    angle_between_flat_bench_and_inclined_bench = float(request.args.get('angle')) if request.args.get('angle') is not None else 60.0
     # angle_between_flat_bench_and_inclined_bench = requests.get('http://172.20.10.12:5000/get_angle_between_flat_bench_and_inclined_bench')
 
     angle = get_angle_for_inclined_bench.get_angle_for_inclined_bench(
@@ -118,8 +118,7 @@ def endpoint_4():
 # http://127.0.0.1:5000/calibrate-motor?number_of_steps=5&is_ccwise=True
 def endpoint_5():
     number_of_steps = request.args.get('number_of_steps')
-    is_ccwise = request.args.get('is_ccwise')
-    print(is_ccwise)
+    is_ccwise = False if request.args.get('is_ccwise') == "False" else True
     turn_motor.calibrate_motor(int(number_of_steps), bool(is_ccwise))
     return "OK, Motor should be turning"
 
