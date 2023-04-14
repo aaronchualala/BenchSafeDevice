@@ -23,6 +23,7 @@ def endpoint_1():
     angle_between_flat_bench_and_slope = float(GYM_ADMIN_VALUES['angle_between_flat_bench_and_slope'])
     # ——— data from user ———
     nipple_height = float(request.args.get('nipple_height'))
+    print('nipple_height: ', nipple_height)
     # ——— data from GPIO ———
     vertical_distance_from_flat_bench_to_device = calculate_bench_distance.calculate_bench_distance(17,4)
     if vertical_distance_from_flat_bench_to_device == 0.0:
@@ -63,8 +64,13 @@ def endpoint_2():
     angle_between_flat_bench_and_slope = float(GYM_ADMIN_VALUES['angle_between_flat_bench_and_slope'])
     # ——— data from user ———
     nipple_height = float(request.args.get('nipple_height'))
+    print('nipple_height: ', nipple_height)
     # ——— data from GPIO ———
-    vertical_distance_from_flat_bench_to_device = 1.20 # calculate_bench_distance.calculate_bench_distance(17,4)
+    vertical_distance_from_flat_bench_to_device = 1.20 
+    vertical_distance_from_flat_bench_to_device = calculate_bench_distance.calculate_bench_distance(17,4)
+    if vertical_distance_from_flat_bench_to_device == 0.0:
+        return str("ERROR: 'vertical_distance_from_flat_bench_to_device' cannot be 0.0")
+    print('vertical_distance_from_flat_bench_to_device: ', vertical_distance_from_flat_bench_to_device)
 
     angle_between_flat_bench_and_inclined_bench = float(request.args.get('angle')) if request.args.get('angle') is not None else 30.0
     # angle_between_flat_bench_and_inclined_bench = requests.get('http://172.20.10.12:5000/get_angle_between_flat_bench_and_inclined_bench')

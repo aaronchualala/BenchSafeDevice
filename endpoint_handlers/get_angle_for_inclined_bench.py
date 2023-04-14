@@ -22,8 +22,8 @@ def get_angle_for_inclined_bench(
     H = float(vertical_distance_from_flat_bench_to_device)
 
     l = B*math.cos(y) -  N*math.cos(y) - (math.tan(theta))*(H - N*math.sin(y))
-    print("before l: ", B*math.cos(y) -  N*math.cos(y))
-    print("l: ", l)
+    # print("before l: ", B*math.cos(y) -  N*math.cos(y))
+    # print("l: ", l)
     angle = math.atan((x+l)/(H - B* math.sin(y))) * 180 / math.pi
 
     print("angle in get_angle: ", angle)
