@@ -15,7 +15,7 @@ cors = CORS(app)
 app.config['COR_HEADERS'] = 'Content-Type'
 
 @app.route('/angle-for-flat-bench') 
-# http://127.0.0.1:5000/angle-for-flat-bench?nipple_height=1.4
+# http://127.0.0.1:5000/angle-for-flat-bench?nipple_height=0.37
 def endpoint_1():
 
     # ——— data from admin ———
@@ -56,7 +56,7 @@ def endpoint_1():
     return "OK, Motor should be turning"
 
 @app.route('/angle-for-inclined-bench')
-# http://127.0.0.1:5000/angle-for-inclined-bench?nipple_height=1.4&angle=60
+# http://127.0.0.1:5000/angle-for-inclined-bench?nipple_height=0.37&angle=30
 def endpoint_2():
 
     # ——— data from admin ———
